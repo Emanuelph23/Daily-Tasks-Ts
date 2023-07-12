@@ -1,10 +1,37 @@
+//CSS
+import styles from './TaskList.module.css';
+import { GrEdit, GrFormTrash } from "react-icons/gr";
+
+//Interfaces
+import {ITask} from '../interfaces/ITask';
 
 
-type Props = {}
+type Props = {
+    taskList: ITask[];
+    handleDelete(id: number) : void;
+}
 
-const TaskList = (props: Props) => {
+const TaskList = ({taskList, handleDelete}: Props) => {
   return (
-    <div>TaskList</div>
+    <>
+        {taskList.length > 0 ? (
+            taskList.map((task) => (
+                <div key={task.id} className={styles.task}>
+                    <div className={styles.details}>
+                        <h4>{task.title}</h4>
+                        <p>Dificuldade: {task.dificulty}</p>
+                        <p>Descrição: {task.description}</p>
+                    </div>
+                    <div className={styles.actions}>
+                        <GrEdit/>
+                        <GrFormTrash onClick={() => handleDelete(task.id)}/>
+                    </div>
+                </div>
+            ))
+        ) : (
+            <p>Nenhuma tarefa adicionada</p>
+        )}
+    </>
   )
 }
 

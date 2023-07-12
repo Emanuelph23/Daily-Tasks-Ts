@@ -25,4 +25,9 @@
     text-transform: uppercase;
 }
 
+.task_list h2{
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
 

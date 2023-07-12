@@ -15,6 +15,12 @@ import { ITask } from './interfaces/ITask';
 
   const [taskList , setTaskList] = useState<ITask[]>([]);
 
+  const deleteTask = (id: number) => {
+    setTaskList(
+      taskList.filter((task) => {return task.id !== id})
+    );
+  };
+
   return (
     <div>
       <Header />
@@ -24,9 +30,9 @@ import { ITask } from './interfaces/ITask';
               <h2>Faça o cronograma das suas atividades</h2>
           </div>
           <TaskForm btnText='Cadastrar' taskList={taskList} setTaskList={setTaskList}/>
-        <div>
+        <div className={styles.task_list}>
           <h2>Tarefas Adicionadas:</h2>
-          <TaskList/>
+          <TaskList taskList={taskList} handleDelete={deleteTask}/>
         </div>
       </main>
       <Footer />
