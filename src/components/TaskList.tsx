@@ -9,9 +9,10 @@ import {ITask} from '../interfaces/ITask';
 type Props = {
     taskList: ITask[];
     handleDelete(id: number) : void;
+    handleEdit(task: ITask) : void;
 }
 
-const TaskList = ({taskList, handleDelete}: Props) => {
+const TaskList = ({taskList, handleDelete, handleEdit}: Props) => {
   return (
     <>
         {taskList.length > 0 ? (
@@ -23,7 +24,7 @@ const TaskList = ({taskList, handleDelete}: Props) => {
                         <p>Descrição: {task.description}</p>
                     </div>
                     <div className={styles.actions}>
-                        <GrEdit/>
+                        <GrEdit onClick={() => handleEdit(task)}/>
                         <GrFormTrash onClick={() => handleDelete(task.id)}/>
                     </div>
                 </div>
